@@ -4,11 +4,12 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 namespace FinSuite
 {
     [TestClass]
-    public class UnitTest1
+    public class TodoTest
     {
         [TestMethod]
         public void TestMethod1()
         {
+
         }
     }
 }
