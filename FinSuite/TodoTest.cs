@@ -12,7 +12,7 @@ namespace FinSuite
     public class TodoTest
     {
         [TestMethod]
-        public void AddandEditTodo()
+        public void AddTodo()
         {
             IWebDriver driver = new FirefoxDriver();
             driver.Url = "http://todomvc.com/";
@@ -25,6 +25,25 @@ namespace FinSuite
             driver.FindElement(By.XPath("//input[@placeholder='What needs to be done?']")).SendKeys("Todo1");
             driver.FindElement(By.XPath("//input[@placeholder='What needs to be done?']")).SendKeys(Keys.Enter);
             driver.FindElement(By.XPath("//input[@placeholder='What needs to be done?']")).SendKeys(Keys.Tab);
+            Thread.Sleep(2000);
+            driver.Close();
+            driver.Quit();
+
+        }
+        [TestMethod]
+        public void AddAndEditTodo()
+        {
+            IWebDriver driver = new FirefoxDriver();
+            driver.Url = "http://todomvc.com/";
+            driver.Manage().Window.Maximize();
+            //driver.Manage().Timeouts().i(TimeSpan.FromSeconds(10));
+            driver.FindElement(By.XPath("//div[@id='tabsContent']/paper-tab[3]/div[.='Labs']")).Click();
+            driver.FindElement(By.XPath("//li/a[@data-source='http://angular.io']")).Click();
+            Thread.Sleep(3000);
+            driver.SwitchTo().Window(driver.WindowHandles.Last());
+            driver.FindElement(By.XPath("//input[@placeholder='What needs to be done?']")).SendKeys("Todo2");
+            driver.FindElement(By.XPath("//input[@placeholder='What needs to be done?']")).SendKeys(Keys.Enter);
+            driver.FindElement(By.XPath("//input[@placeholder='What needs to be done?']")).SendKeys(Keys.Tab);
 
             Thread.Sleep(3000);
             Actions actions = new Actions(driver);
@@ -33,12 +52,11 @@ namespace FinSuite
             Thread.Sleep(3000);
             driver.FindElement(By.XPath("//input[@class='edit']")).SendKeys("Updated");
             driver.FindElement(By.XPath("//input[@class='edit']")).SendKeys(Keys.Enter);
-            Thread.Sleep(3000);
+            Thread.Sleep(2000);
             driver.Close();
             driver.Quit();
 
         }
-
 
 
 
